@@ -6,13 +6,10 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import java.io.IOException;
 import java.util.*;
 
-public class PrintList {
+public class MapCreator {
 
 
-    public PrintList() throws IOException, InvalidFormatException {
-    }
-
-    public Map<String, String> printMapFromDarbuotojai() throws IOException, InvalidFormatException {
+    Map<String, String> printMapFromDarbuotojai() throws IOException, InvalidFormatException {
 
         ArrayList<String> rows = ExcelFiles.getDataFromDarbuotojai();
         Map<String, String> employeeAndCountryID = new HashMap<>();
@@ -27,11 +24,6 @@ public class PrintList {
 
         return employeeAndCountryID;
     }
-
-
-
-
-
 
 
     public Map<String, Double> printMapFromDarboValandos() throws IOException, InvalidFormatException {

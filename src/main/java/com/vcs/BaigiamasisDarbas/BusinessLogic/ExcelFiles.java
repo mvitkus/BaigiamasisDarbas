@@ -17,18 +17,14 @@ public class ExcelFiles {
     public static ArrayList<String> getDataFromDarboValandos() throws IOException, InvalidFormatException {
 
 
-        ArrayList<String> manopvz = ExcelReader.GetList(DarboValandos);
-
-        return manopvz;
+        return ExcelReader.GetList(DarboValandos);
     }
 
     public static ArrayList<String> getDataFromDarbuotojai() throws IOException, InvalidFormatException {
 
 
-        ArrayList<String> manopvz2 = ExcelReader.GetList(Darbuotojai);
-        return manopvz2;
+        return ExcelReader.GetList(Darbuotojai);
     }
-
 
 
 }
