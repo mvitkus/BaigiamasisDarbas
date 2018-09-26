@@ -1,0 +1,71 @@
+package com.vcs.BaigiamasisDarbas.ExcelReader;
+
+import com.vcs.BaigiamasisDarbas.BusinessLogic.ExcelFiles;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+
+import java.io.IOException;
+import java.util.*;
+
+public class PrintList {
+
+
+    public PrintList() throws IOException, InvalidFormatException {
+    }
+
+
+    public void printListDarbuotojai() throws IOException, InvalidFormatException {
+
+        ArrayList<String> antras = ExcelFiles.getDataFromDarbuotojai();
+
+        for (int i = 1; i < antras.size(); i++) {
+
+            System.out.println(antras.get(i));
+
+        }
+    }
+
+
+    public Map<String, Double> printListFromDarboValandos() throws IOException, InvalidFormatException {
+
+        ArrayList<String> rows = ExcelFiles.getDataFromDarboValandos();
+
+        //ArrayList<String> rowsMod = new ArrayList<String>();
+
+        Map<String, Double> aMap = new HashMap<>();
+        for (int counter = 1; counter < rows.size(); counter++) {
+
+            String pvz = String.valueOf(rows.get(counter));
+            String[] array = pvz.split(", ");
+            ArrayList<String> list = new ArrayList(Arrays.asList(array));
+//           String rowValidHolder = (list.get(2) + " " + list.get(list.size() - 1));
+            String rowValidHolder = (list.get(2));
+
+
+            // String rowValidHolder2= hi.replace("o", "");
+            String rowValidHolder2 = (list.get(list.size() - 1));
+            String rowValidHolder3 = rowValidHolder2.replace("]", "");
+            // Double rowValidHolder3  = Double.parseDouble(rowValidHolder2);
+            // System.out.println(rowValidHolder3);
+            Double rowValidHolder4 = Double.parseDouble(rowValidHolder3);
+
+
+            if (!aMap.containsKey(rowValidHolder)) {
+                aMap.put(rowValidHolder, rowValidHolder4);
+            } else {
+                aMap.put(rowValidHolder, aMap.get(rowValidHolder) + rowValidHolder4);
+            }
+
+
+//            aMap.put(rowValidHolder,rowValidHolder4);
+            //System.out.println(rowValidHolder);
+            //rowsMod.add(rowValidHolder);
+        }
+
+        return aMap;
+    }
+
+
+
+
+
+}
