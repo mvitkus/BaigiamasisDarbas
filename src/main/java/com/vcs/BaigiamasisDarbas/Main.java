@@ -11,18 +11,18 @@ public class Main {
 
 
         PrintList list = new PrintList();
-        HashMap<String, String> example = (HashMap<String, String>) list.printMapFromDarbuotojai();
+        HashMap<String, String> mapFromDarbuotojai = (HashMap<String, String>) list.printMapFromDarbuotojai();
 
-        example.forEach((key, value) -> System.out.println(key + " : " + value));
+        mapFromDarbuotojai.forEach((key, value) -> System.out.println(key + " : " + value));
 
 
 
         System.out.println("");
 
 
-        HashMap<String, Double> example1 = (HashMap<String, Double>) list.printMapFromDarboValandos();
+        HashMap<String, Double> mapFromDarboValandos = (HashMap<String, Double>) list.printMapFromDarboValandos();
 
-        example1.forEach((key, value) -> System.out.println(key + " : " + value));
+        mapFromDarboValandos.forEach((key, value) -> System.out.println(key + " : " + value));
 
 
     }
