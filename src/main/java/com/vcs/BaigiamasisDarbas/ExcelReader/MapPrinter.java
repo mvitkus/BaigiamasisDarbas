@@ -12,29 +12,14 @@ import java.util.*;
 public class MapPrinter {
 
     private MapCreator list = new MapCreator();
+    private Map<String, Double> darboValandos = list.printMapFromDarboValandos();
+    private Map<String, Double> darbuotojai = list.printMapFromDarbuotojai();
 
-//    public void printDarbuotojaiMap() throws IOException, InvalidFormatException {
-//        HashMap<String, Double> mapFromDarbuotojai = (HashMap<String, Double>) list.printMapFromDarbuotojai();
-//        System.out.println("Darbuotojai : MaxValandos");
-//        mapFromDarbuotojai.forEach((key, value) -> System.out.println(key + " : " + value));
-//    }
-//
-//    @RequestMapping("/")
-//    public void printDarboValandosMap() throws IOException, InvalidFormatException {
-//
-//
-//        HashMap<String, Double> mapFromDarboValandos = (HashMap<String, Double>) list.printMapFromDarboValandos();
-//        System.out.println("Darbuotojai : Valandos");
-//        mapFromDarboValandos.forEach((key, value) -> System.out.println(key + " : " + value));
-//
-//    }
-
-    public void getOvertime() throws IOException, InvalidFormatException {
+    public MapPrinter() throws IOException, InvalidFormatException {
+    }
 
 
-
-        Map<String, Double> darboValandos = list.printMapFromDarboValandos();
-        Map<String, Double> darbuotojai = list.printMapFromDarbuotojai();
+    public void overtime(){
 
 
         final Map<String, Double> overtimeList = new HashMap<>();
@@ -52,10 +37,9 @@ public class MapPrinter {
     }
 
 
-    public void getNullHours() throws IOException, InvalidFormatException {
+    public void nullHours(){
 
-        Map<String, Double> darboValandos = list.printMapFromDarboValandos();
-        Map<String, Double> darbuotojai = list.printMapFromDarbuotojai();
+
         final Map<String, Double> nullHoursList = new HashMap<>();
 
         for (final String key : darbuotojai.keySet()) {
@@ -70,10 +54,9 @@ public class MapPrinter {
 
     }
 
-    public void getValidHours() throws IOException, InvalidFormatException {
+    public void validHours(){
 
-        Map<String, Double> darboValandos = list.printMapFromDarboValandos();
-        Map<String, Double> darbuotojai = list.printMapFromDarbuotojai();
+
         final Map<String, Double> validHoursList = new HashMap<>();
         for (final String key : darbuotojai.keySet()) {
             if (darboValandos.containsKey(key) && darbuotojai.get(key) >= darboValandos.get(key) && darboValandos.get(key) != 0) {
@@ -87,10 +70,9 @@ public class MapPrinter {
 
     }
 
-    public void getNewID() throws IOException, InvalidFormatException {
+    public void newID(){
 
-        Map<String, Double> darboValandos = list.printMapFromDarboValandos();
-        Map<String, Double> darbuotojai = list.printMapFromDarbuotojai();
+
         final Map<String, Double> newIdList = new HashMap<>();
         for (final String key : darboValandos.keySet()) {
             if (!darbuotojai.containsKey(key)) {
@@ -107,11 +89,12 @@ public class MapPrinter {
 
     }
 
-    private void writeNewIdToExcel(Map<String, Double> newIdList){
+    private void writeNewIdToExcel(Map<String, Double> newIdList) {
 
         Scanner input = new Scanner(System.in);
-        System.out.println();
-        System.out.println("Ar norite įrašyti naujus ID ir darbo valandas į Darbuotojų sąrašą?");
+
+        printMsg();
+
         String a = input.next();
 
 
@@ -128,7 +111,12 @@ public class MapPrinter {
         }
     }
 
-    private void updateCell(Map<String, Double> hm3){
+    private void printMsg() {
+        System.out.println();
+        System.out.println("Ar norite įrašyti naujus ID ir darbo valandas į Darbuotojų sąrašą? Taip/Ne");
+    }
+
+    private void updateCell(Map<String, Double> hm3) {
 
         //TODO Excel Darbuotojai sąrašo atnaujinimas.
 

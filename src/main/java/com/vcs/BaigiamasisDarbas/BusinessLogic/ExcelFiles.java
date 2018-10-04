@@ -12,20 +12,20 @@ public class ExcelFiles {
 
 
 
-    private static String DarboValandos = "src\\main\\resources\\DarboValandos.xls";
-    private static String Darbuotojai = "src\\main\\resources\\Darbuotojai.xlsx";
+    private static String darboValandos = "src\\main\\resources\\darboValandos.xls";
+    private static String darbuotojai = "src\\main\\resources\\darbuotojai.xlsx";
 
 
     public static ArrayList<String> getDataFromDarboValandos() throws IOException, InvalidFormatException {
 
 
-        return ExcelReader.getList(DarboValandos);
+        return ExcelReader.getList(darboValandos);
     }
 
     public static ArrayList<String> getDataFromDarbuotojai() throws IOException, InvalidFormatException {
 
 
-        return ExcelReader.getList(Darbuotojai);
+        return ExcelReader.getList(darbuotojai);
     }
 
 

@@ -12,19 +12,19 @@ public class Printer {
        MapPrinter newPrinter = new MapPrinter();
        System.out.println("Darbuotojai, kurie nesuvedė valandų: ");
        System.out.println();
-       newPrinter.getNullHours();
+       newPrinter.nullHours();
        System.out.println();
        System.out.println("Darbuotojai, kurie supildė per daug valandų, nei jiems yra leidžiama:");
        System.out.println();
-       newPrinter.getOvertime();
+       newPrinter.overtime();
        System.out.println();
        System.out.println("Darbuotojai, kurie supildė teisingai:");
        System.out.println();
-       newPrinter.getValidHours();
+       newPrinter.validHours();
        System.out.println();
        System.out.println("Darbuotojai, kurių nebuvo sąraše:");
        System.out.println();
-       newPrinter.getNewID();
+       newPrinter.newID();
 
     }
 
