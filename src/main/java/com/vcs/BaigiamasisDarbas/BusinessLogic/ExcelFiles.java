@@ -10,20 +10,22 @@ import java.util.ArrayList;
 public class ExcelFiles {
 
 
-    private static String DarboValandos = "DarboValandos.xls";
-    private static String Darbuotojai = "Darbuotojai1.xlsx";
+
+
+    private static String DarboValandos = "src\\main\\resources\\DarboValandos.xls";
+    private static String Darbuotojai = "src\\main\\resources\\Darbuotojai.xlsx";
 
 
     public static ArrayList<String> getDataFromDarboValandos() throws IOException, InvalidFormatException {
 
 
-        return ExcelReader.GetList(DarboValandos);
+        return ExcelReader.getList(DarboValandos);
     }
 
     public static ArrayList<String> getDataFromDarbuotojai() throws IOException, InvalidFormatException {
 
 
-        return ExcelReader.GetList(Darbuotojai);
+        return ExcelReader.getList(Darbuotojai);
     }
 
 

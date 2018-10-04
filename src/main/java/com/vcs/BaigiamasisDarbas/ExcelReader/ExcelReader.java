@@ -12,7 +12,7 @@ import java.util.Iterator;
 public class ExcelReader {
 
 
-    public static ArrayList<String> GetList(String filename) throws IOException, InvalidFormatException {
+    public static ArrayList<String> getList(String filename) throws IOException, InvalidFormatException {
 
 
         Workbook workbook = WorkbookFactory.create(new File(filename));

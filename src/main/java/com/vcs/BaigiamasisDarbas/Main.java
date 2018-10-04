@@ -1,21 +1,21 @@
 package com.vcs.BaigiamasisDarbas;
 
-import com.vcs.BaigiamasisDarbas.ExcelReader.MapCreator;
+import com.vcs.BaigiamasisDarbas.BusinessLogic.Printer;
 import com.vcs.BaigiamasisDarbas.ExcelReader.MapPrinter;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.IOException;
-import java.util.HashMap;
 
+@SpringBootApplication
 public class Main {
 
     public static void main(String[] args) throws IOException, InvalidFormatException {
+ //       SpringApplication.run(Main.class, args);
 
+        Printer print = new Printer();
+        print.printAllevents();
 
-        MapPrinter print = new MapPrinter();
-        print.printDarboValandosMap();
-        System.out.println("-----------------");
-        print.printDarbuotojaiMap();
 
 
     }

@@ -2,23 +2,25 @@ package com.vcs.BaigiamasisDarbas.ExcelReader;
 
 import com.vcs.BaigiamasisDarbas.BusinessLogic.ExcelFiles;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.io.IOException;
 import java.util.*;
 
-public class MapCreator {
+class MapCreator {
 
 
-    Map<String, String> printMapFromDarbuotojai() throws IOException, InvalidFormatException {
+    Map<String, Double> printMapFromDarbuotojai() throws IOException, InvalidFormatException {
 
         ArrayList<String> rows = ExcelFiles.getDataFromDarbuotojai();
-        Map<String, String> employeeAndCountryID = new HashMap<>();
+        Map<String, Double> employeeAndCountryID = new HashMap<>();
         for (int counter = 1; counter < rows.size(); counter++) {
             String atskirtasStringas = String.valueOf(rows.get(counter));
             String[] array = atskirtasStringas.split(", ");
             ArrayList<String> atskirtasValidusStringas = new ArrayList(Arrays.asList(array));
             String employeeNumber = (atskirtasValidusStringas.get(0)).replace("[", "");
-            String employeeCountryID = (atskirtasValidusStringas.get(1).replace("]", ""));
+            Double employeeCountryID = Double.parseDouble((atskirtasValidusStringas.get(1).replace("]", "")));
             employeeAndCountryID.put(employeeNumber, employeeCountryID);
         }
 
@@ -26,7 +28,7 @@ public class MapCreator {
     }
 
 
-    public Map<String, Double> printMapFromDarboValandos() throws IOException, InvalidFormatException {
+    Map<String, Double> printMapFromDarboValandos() throws IOException, InvalidFormatException {
 
         ArrayList<String> rows = ExcelFiles.getDataFromDarboValandos();
 
