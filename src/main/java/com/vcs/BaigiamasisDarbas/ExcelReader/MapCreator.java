@@ -7,14 +7,32 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import java.io.IOException;
 import java.util.*;
 
-class MapCreator {
+public class MapCreator {
 
     private String atskirtasStringas;
     private ArrayList<String> atskirtasValidusStringas;
 
-    Map<String, Double> printMapFromDarbuotojai() throws IOException, InvalidFormatException {
-        ArrayList<String> rows = ExcelFiles.getDataFromDarbuotojai();
+    Map<String, Double> darbuotojaiToMap() throws IOException, InvalidFormatException {
+
+        ArrayList<String> rows = getDataDarbuotojai();
         Map<String, Double> employeeAndCountryID = new HashMap<>();
+        darbuotojaiMapParser(rows, employeeAndCountryID);
+        return employeeAndCountryID;
+    }
+
+
+    Map<String, Double> darboValandosToMap() throws IOException, InvalidFormatException {
+
+
+        ArrayList<String> rows = getDataDarboValandos();
+        Map<String, Double> employeeAndWorkHours = new HashMap<>();
+        darboValandosMapParser(rows, employeeAndWorkHours);
+        return employeeAndWorkHours;
+    }
+
+
+    private void darbuotojaiMapParser(ArrayList<String> rows, Map<String, Double> employeeAndCountryID) {
+
         for (int counter = 1; counter < rows.size(); counter++) {
             atskirtasStringas = String.valueOf(rows.get(counter));
             String[] array = atskirtasStringas.split(", ");
@@ -23,13 +41,9 @@ class MapCreator {
             Double employeeCountryID = Double.parseDouble((atskirtasValidusStringas.get(1).replace("]", "")));
             employeeAndCountryID.put(employeeNumber, employeeCountryID);
         }
-        return employeeAndCountryID;
     }
 
-
-    Map<String, Double> printMapFromDarboValandos() throws IOException, InvalidFormatException {
-        ArrayList<String> rows = ExcelFiles.getDataFromDarboValandos();
-        Map<String, Double> employeeAndWorkHours = new HashMap<>();
+    private void darboValandosMapParser(ArrayList<String> rows, Map<String, Double> employeeAndWorkHours) {
         for (int counter = 1; counter < rows.size(); counter++) {
             atskirtasStringas = String.valueOf(rows.get(counter));
             String[] array = atskirtasStringas.split(", ");
@@ -45,10 +59,23 @@ class MapCreator {
             }
 
         }
-
-        return employeeAndWorkHours;
     }
 
+    private ArrayList<String> getDataDarbuotojai() throws IOException, InvalidFormatException {
+         ArrayList<String> rows = ExcelFiles.getDataFromDarbuotojai();
+//        ArrayList<String> rows = new ArrayList<>();
+//        rows.add("[ID, Valandos, ]");
+//        rows.add("[91A6037A19, 41.00, ]");
+//        rows.add("[370532G773, 45.00, ]");
+
+
+        return rows;
+    }
+
+    private ArrayList<String> getDataDarboValandos() throws IOException, InvalidFormatException {
+        ArrayList<String> rows = ExcelFiles.getDataFromDarboValandos();
+        return rows;
+    }
 
 }
 

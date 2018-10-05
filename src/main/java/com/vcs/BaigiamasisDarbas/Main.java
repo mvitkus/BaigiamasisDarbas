@@ -2,6 +2,7 @@ package com.vcs.BaigiamasisDarbas;
 
 import com.vcs.BaigiamasisDarbas.BusinessLogic.ExcelFiles;
 import com.vcs.BaigiamasisDarbas.BusinessLogic.Printer;
+import com.vcs.BaigiamasisDarbas.ExcelReader.MapCreator;
 import com.vcs.BaigiamasisDarbas.ExcelReader.MapPrinter;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,6 +17,10 @@ public class Main {
 
         Printer print = new Printer();
         print.printAllevents();
+
+//        MapCreator creat = new MapCreator();
+//
+//        System.out.println(creat.darbuotojaiToMap());
 
 
 

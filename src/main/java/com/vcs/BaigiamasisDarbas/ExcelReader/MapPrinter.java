@@ -16,8 +16,8 @@ public class MapPrinter {
     private static String darbuotojuExcel = "Darbuotojai.xlsx";
 
     private MapCreator list = new MapCreator();
-    private Map<String, Double> darboValandos = list.printMapFromDarboValandos();
-    private Map<String, Double> darbuotojai = list.printMapFromDarbuotojai();
+    private Map<String, Double> darboValandos = list.darboValandosToMap();
+    private Map<String, Double> darbuotojai = list.darbuotojaiToMap();
 
     public MapPrinter() throws IOException, InvalidFormatException {
     }
