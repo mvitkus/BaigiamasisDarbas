@@ -5,25 +5,29 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
+public class ExcelFiles implements DataFiles {
 
-public class ExcelFiles {
+	private static String darboValandos = "DarboValandos.xls";
+	private static String darbuotojai = "Darbuotojai.xlsx";
 
+	public List<List<String>> getDataFromDarboValandos() {
 
-private static String darboValandos = "DarboValandos.xls";
-    private static String darbuotojai = "Darbuotojai.xlsx";
+		try {
+			return ExcelReader.getList(darboValandos);
+		} catch (InvalidFormatException | IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
-    public static ArrayList getDataFromDarboValandos() throws IOException, InvalidFormatException {
+	public List<List<String>> getDataFromDarbuotojai() {
 
-
-        return ExcelReader.getList(darboValandos);
-    }
-
-    public static ArrayList getDataFromDarbuotojai() throws IOException, InvalidFormatException {
-
-
-        return ExcelReader.getList(darbuotojai);
-    }
-
+		try {
+			return ExcelReader.getList(darbuotojai);
+		} catch (InvalidFormatException | IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 }

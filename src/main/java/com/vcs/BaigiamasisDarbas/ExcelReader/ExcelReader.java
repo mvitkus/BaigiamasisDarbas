@@ -7,51 +7,43 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
-
+import java.util.List;
 
 public class ExcelReader {
 
+	public static List<List<String>> getList(String filename) throws IOException, InvalidFormatException {
 
-    public static ArrayList getList(String filename) throws IOException, InvalidFormatException {
+		Workbook workbook = WorkbookFactory.create(new File(filename));
 
+		workbook.sheetIterator();
 
-        Workbook workbook = WorkbookFactory.create(new File(filename));
+		List<List<String>> sheetData = new ArrayList<>();
 
+		Sheet sheet = workbook.getSheetAt(0);
 
-        workbook.sheetIterator();
+		DataFormatter dataFormatter = new DataFormatter();
 
-        ArrayList sheetData = new ArrayList();
+		Iterator<Row> rowIterator = sheet.rowIterator();
+		while (rowIterator.hasNext()) {
+			Row row = rowIterator.next();
 
+			Iterator<Cell> cellIterator = row.cellIterator();
+			List<String> data = new ArrayList<>();
 
-        Sheet sheet = workbook.getSheetAt(0);
+			while (cellIterator.hasNext()) {
+				Cell cell = cellIterator.next();
+				String cellValue = dataFormatter.formatCellValue(cell);
+				// System.out.print(cellValue + "\t");
+				data.add(cellValue);
+			}
 
-        DataFormatter dataFormatter = new DataFormatter();
+			sheetData.add(data);
+			workbook.close();
 
+		}
 
-        Iterator<Row> rowIterator = sheet.rowIterator();
-        while (rowIterator.hasNext()) {
-            Row row = rowIterator.next();
+		return sheetData;
 
-            Iterator<Cell> cellIterator = row.cellIterator();
-            ArrayList data = new ArrayList();
-
-            while (cellIterator.hasNext()) {
-                Cell cell = cellIterator.next();
-                String cellValue = dataFormatter.formatCellValue(cell);
-                //  System.out.print(cellValue + "\t");
-                data.add(cellValue);
-            }
-
-
-            sheetData.add(String.valueOf(data));
-            workbook.close();
-
-        }
-
-        return sheetData;
-
-
-    }
-
+	}
 
 }
