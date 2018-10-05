@@ -12,7 +12,7 @@ import java.util.Iterator;
 public class ExcelReader {
 
 
-    public static ArrayList<String> getList(String filename) throws IOException, InvalidFormatException {
+    public static ArrayList getList(String filename) throws IOException, InvalidFormatException {
 
 
         Workbook workbook = WorkbookFactory.create(new File(filename));
@@ -20,7 +20,7 @@ public class ExcelReader {
 
         workbook.sheetIterator();
 
-        ArrayList<String> sheetData = new ArrayList();
+        ArrayList sheetData = new ArrayList();
 
 
         Sheet sheet = workbook.getSheetAt(0);
@@ -33,7 +33,7 @@ public class ExcelReader {
             Row row = rowIterator.next();
 
             Iterator<Cell> cellIterator = row.cellIterator();
-            ArrayList<String> data = new ArrayList();
+            ArrayList data = new ArrayList();
 
             while (cellIterator.hasNext()) {
                 Cell cell = cellIterator.next();

@@ -1,7 +1,10 @@
 package com.vcs.BaigiamasisDarbas.ExcelReader;
 
+import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
+
+import org.apache.poi.ss.usermodel.*;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.*;
@@ -10,6 +13,7 @@ import java.util.*;
 
 @RestController
 public class MapPrinter {
+    private static String darbuotojuExcel = "Darbuotojai.xlsx";
 
     private MapCreator list = new MapCreator();
     private Map<String, Double> darboValandos = list.printMapFromDarboValandos();
@@ -19,7 +23,7 @@ public class MapPrinter {
     }
 
 
-    public void overtime(){
+    public void overtime() {
 
 
         final Map<String, Double> overtimeList = new HashMap<>();
@@ -37,7 +41,7 @@ public class MapPrinter {
     }
 
 
-    public void nullHours(){
+    public void nullHours() {
 
 
         final Map<String, Double> nullHoursList = new HashMap<>();
@@ -54,7 +58,7 @@ public class MapPrinter {
 
     }
 
-    public void validHours(){
+    public void validHours() {
 
 
         final Map<String, Double> validHoursList = new HashMap<>();
@@ -70,7 +74,7 @@ public class MapPrinter {
 
     }
 
-    public void newID(){
+    public void newID() {
 
 
         final Map<String, Double> newIdList = new HashMap<>();
@@ -95,10 +99,10 @@ public class MapPrinter {
 
         printMsg();
 
-        String a = input.next();
+        String confirm = input.next();
 
 
-        switch (a) {
+        switch (confirm) {
             case "Taip":
                 updateCell(newIdList);
                 break;
@@ -106,7 +110,7 @@ public class MapPrinter {
                 System.out.println("Ne. tai ne");
                 break;
             default:
-                System.out.println("Ne ta ivedei " + a);
+                System.out.println("Ne ta ivedei " + confirm);
                 break;
         }
     }
@@ -116,9 +120,46 @@ public class MapPrinter {
         System.out.println("Ar norite įrašyti naujus ID ir darbo valandas į Darbuotojų sąrašą? Taip/Ne");
     }
 
-    private void updateCell(Map<String, Double> hm3) {
+    private void updateCell(Map<String, Double> newIdList) {
+        String excelFilePath = darbuotojuExcel;
 
-        //TODO Excel Darbuotojai sąrašo atnaujinimas.
+        Map<String, Double> testMap = newIdList;
+
+        try {
+            FileInputStream inputStream = new FileInputStream(new File(excelFilePath));
+            Workbook workbook = WorkbookFactory.create(inputStream);
+
+            Sheet sheet = workbook.getSheetAt(0);
+
+            Map<String, Double> mapas = newIdList;
+
+//            int rowCount = sheet.getLastRowNum();
+//            int cellnum = 0;
+
+            Set<String> keyset = testMap.keySet();
+//            for(String key: keyset){
+//                Double objArr = mapas.get(key);
+//                Row row = sheet.createRow(rowCount++);
+//                Cell cell = row.createCell(cellnum);
+//
+//                cell.setCellValue(key);
+//                //
+//
+//            }
+
+
+            inputStream.close();
+
+            FileOutputStream outputStream = new FileOutputStream(darbuotojuExcel);
+            workbook.write(outputStream);
+            workbook.close();
+            outputStream.close();
+
+        } catch (IOException | EncryptedDocumentException
+                | InvalidFormatException ex) {
+            ex.printStackTrace();
+        }
+
 
     }
 
